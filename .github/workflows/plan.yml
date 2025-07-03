@@ -1,0 +1,20 @@
+name: Plan Instance Type Change
+
+on:
+  workflow_run:
+    workflows: ["Analyze Usage"]
+    types:
+      - completed
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Suggestion
+        uses: actions/download-artifact@v3
+        with:
+          name: suggestion
+
+      - name: Compare Suggested vs Requested
+        run: |
+          python scripts/plan_decision.py "$GITHUB_EVENT_PATH"

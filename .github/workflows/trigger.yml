@@ -1,0 +1,28 @@
+name: Trigger EC2 Optimization
+
+on:
+  workflow_dispatch:
+    inputs:
+      instance_id:
+        description: 'EC2 Instance ID'
+        required: true
+      region:
+        description: 'AWS Region'
+        required: true
+      requested_type:
+        description: 'Requested EC2 instance type (optional)'
+        required: false
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Analyze Workflow
+        uses: peter-evans/workflow-dispatch@v1
+        with:
+          workflow: analyze.yml
+          ref: main
+          inputs: |
+            instance_id: ${{ github.event.inputs.instance_id }}
+            region: ${{ github.event.inputs.region }}
+            requested_type: ${{ github.event.inputs.requested_type }}

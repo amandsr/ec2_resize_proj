@@ -1,0 +1,15 @@
+name: Notify Change Summary
+
+on:
+  workflow_run:
+    workflows: ["Apply Instance Type Change"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Email Notification
+        run: |
+          python scripts/email_notify.py

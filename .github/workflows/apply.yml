@@ -1,0 +1,20 @@
+name: Apply Instance Type Change
+
+on:
+  workflow_run:
+    workflows: ["Plan Instance Type Change", "Approval for Change"]
+    types:
+      - completed
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Boto3
+        run: pip install boto3
+
+      - name: Apply Instance Type Change
+        run: python scripts/change_type.py
