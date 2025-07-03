@@ -1,0 +1,15 @@
+{
+  "t3.medium": {
+    "upgrade": "t3.large",
+    "downgrade": "t3.small"
+  },
+  "t3.large": {
+    "upgrade": "t3.xlarge",
+    "downgrade": "t3.medium"
+  },
+  "t3.small": {
+    "upgrade": "t3.medium",
+    "downgrade": "t3.nano"
+  }
+}
+
