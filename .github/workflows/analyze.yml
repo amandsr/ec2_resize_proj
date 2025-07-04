@@ -39,7 +39,7 @@ jobs:
           python scripts/instance_recommender.py
 
       - name: Upload Recommendation
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: suggestion
           path: suggestion.json
