@@ -1,14 +1,18 @@
+# .github/workflows/analyze.yml
 name: Analyze Usage
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       instance_id:
         required: true
+        type: string
       region:
         required: true
+        type: string
       requested_type:
         required: false
+        type: string
 
 jobs:
   analyze:
@@ -28,7 +32,7 @@ jobs:
 
       - name: Analyze Usage
         run: |
-          python scripts/analyze_usage.py ${{ github.event.inputs.instance_id }} ${{ github.event.inputs.region }}
+          python scripts/analyze_usage.py ${{ inputs.instance_id }} ${{ inputs.region }}
 
       - name: Recommend Instance Type
         run: |
