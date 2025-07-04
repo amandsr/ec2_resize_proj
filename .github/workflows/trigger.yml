@@ -15,14 +15,8 @@ on:
 
 jobs:
   start:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Analyze Workflow
-        uses: peter-evans/workflow-dispatch@v1.0.0
-        with:
-          workflow: analyze.yml
-          ref: main
-          inputs: |
-            instance_id: ${{ github.event.inputs.instance_id }}
-            region: ${{ github.event.inputs.region }}
-            requested_type: ${{ github.event.inputs.requested_type }}
+    uses: ./.github/workflows/analyze.yml  # Call analyze.yml as reusable workflow
+    with:
+      instance_id: ${{ github.event.inputs.instance_id }}
+      region: ${{ github.event.inputs.region }}
+      requested_type: ${{ github.event.inputs.requested_type }}
