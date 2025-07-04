@@ -22,11 +22,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Debug AWS Env Vars
-      run: env | grep AWS
+      - name: Debug AWS Env Vars
+        run: env | grep AWS
       
   analyze:
     runs-on: ubuntu-latest
